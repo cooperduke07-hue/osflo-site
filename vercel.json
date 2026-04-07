@@ -1,0 +1,6 @@
+{
+  "rootDirectory": "osflo-site",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}
