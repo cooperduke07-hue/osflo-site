@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useForm } from '@formspree/react'
 import './App.css'
 
-const CALENDLY = 'https://calendly.com/osflo/30min'
-
 function useScrolled(threshold = 20) {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -153,8 +151,8 @@ export default function App() {
       {/* ── NAV ── */}
       <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
         <a href="#" className="nav-logo">OS<span>flo</span></a>
-        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="nav-cta">
-          Book a Call
+        <a href="#audit" className="nav-cta">
+          Get a Free Audit
         </a>
       </nav>
 
@@ -168,8 +166,8 @@ export default function App() {
           OSFlo builds and installs automated follow-up and communication systems that run in the background — so you close more, lose fewer clients, and stop leaving money on the table.
         </p>
         <div className="hero-actions">
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-primary">
-            Book a Free Call
+          <a href="#audit" className="btn-primary">
+            Get a Free Audit
           </a>
           <a href="#how" className="btn-secondary">
             See how it works
@@ -314,8 +312,8 @@ export default function App() {
               <li>14-day implementation</li>
               <li>1 round of revisions</li>
             </ul>
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="pricing-action secondary">
-              Book a Call
+            <a href="#audit" className="pricing-action secondary">
+              Get a Free Audit
             </a>
           </RevealSection>
 
@@ -334,8 +332,8 @@ export default function App() {
               <li>3 rounds of revisions</li>
               <li>30-day post-launch support</li>
             </ul>
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="pricing-action primary">
-              Book a Call
+            <a href="#audit" className="pricing-action primary">
+              Get a Free Audit
             </a>
           </RevealSection>
 
@@ -352,8 +350,8 @@ export default function App() {
               <li>Quarterly strategy review call</li>
               <li>Cancel any time, no lock-in</li>
             </ul>
-            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="pricing-action secondary">
-              Book a Call
+            <a href="#audit" className="pricing-action secondary">
+              Get a Free Audit
             </a>
           </RevealSection>
         </div>
@@ -365,9 +363,9 @@ export default function App() {
           <h2>Ready to stop chasing?<br /><em>Let's build your system.</em></h2>
         </RevealSection>
         <RevealSection className="cta-banner-right" delay="reveal-delay-1">
-          <p>30-minute call. No pitch decks. We map your gaps and tell you exactly what we'd build.</p>
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn-primary">
-            Book Your Free Call
+          <p>No pitch decks. We map your gaps and tell you exactly what we'd build.</p>
+          <a href="#audit" className="btn-primary">
+            Get a Free Audit
           </a>
         </RevealSection>
       </section>
@@ -382,7 +380,7 @@ export default function App() {
           <a href="mailto:cooper@osflo.com.au" className="footer-link">cooper@osflo.com.au</a>
           <a href="https://instagram.com/osfloai" target="_blank" rel="noopener noreferrer" className="footer-link">Instagram</a>
           <a href="https://tiktok.com/@osfloai" target="_blank" rel="noopener noreferrer" className="footer-link">TikTok</a>
-          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="footer-link">Book a Call</a>
+          <a href="#audit" className="footer-link">Get a Free Audit</a>
         </div>
         <div className="footer-bottom">
           <span className="footer-copy">© {new Date().getFullYear()} OSFlo. All rights reserved.</span>
