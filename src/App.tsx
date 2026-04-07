@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import type { FormEvent } from 'react'
 import './App.css'
 
 const CALENDLY = 'https://calendly.com/osflo/30min'
@@ -43,6 +44,124 @@ function RevealSection({ children, className = '', delay = '' }: {
     <div ref={ref} className={`reveal ${delay} ${className}`}>
       {children}
     </div>
+  )
+}
+
+function WaitlistForm() {
+  const [fields, setFields] = useState({
+    fullName: '',
+    email: '',
+    businessType: '',
+    teamSize: '',
+    adminPain: '',
+    docCollection: '',
+  })
+  const [submitted, setSubmitted] = useState(false)
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
+    setFields(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault()
+    console.log('Waitlist submission:', fields)
+    setSubmitted(true)
+  }
+
+  if (submitted) {
+    return (
+      <div className="waitlist-confirm">
+        <div className="waitlist-confirm-icon">✓</div>
+        <p className="waitlist-confirm-msg">
+          You're on the list. We'll be in touch within 48 hours to schedule your free audit.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <form className="waitlist-form" onSubmit={handleSubmit} noValidate>
+      <div className="waitlist-row">
+        <div className="waitlist-field">
+          <label htmlFor="fullName">Full name</label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            required
+            value={fields.fullName}
+            onChange={handleChange}
+            placeholder="Jane Smith"
+          />
+        </div>
+        <div className="waitlist-field">
+          <label htmlFor="email">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            value={fields.email}
+            onChange={handleChange}
+            placeholder="jane@yourfirm.com.au"
+          />
+        </div>
+      </div>
+
+      <div className="waitlist-row">
+        <div className="waitlist-field">
+          <label htmlFor="businessType">Business type</label>
+          <select id="businessType" name="businessType" required value={fields.businessType} onChange={handleChange}>
+            <option value="" disabled>Select your business type</option>
+            <option value="Accounting firm">Accounting firm</option>
+            <option value="Bookkeeping practice">Bookkeeping practice</option>
+            <option value="Financial adviser">Financial adviser</option>
+            <option value="Mortgage broker">Mortgage broker</option>
+            <option value="Legal firm">Legal firm</option>
+            <option value="Allied health">Allied health</option>
+            <option value="Other service business">Other service business</option>
+          </select>
+        </div>
+        <div className="waitlist-field">
+          <label htmlFor="teamSize">Team size</label>
+          <select id="teamSize" name="teamSize" required value={fields.teamSize} onChange={handleChange}>
+            <option value="" disabled>Select team size</option>
+            <option value="Just me">Just me</option>
+            <option value="2-5 people">2–5 people</option>
+            <option value="6-10 people">6–10 people</option>
+            <option value="11-15 people">11–15 people</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="waitlist-field">
+        <label htmlFor="adminPain">Biggest admin pain point</label>
+        <textarea
+          id="adminPain"
+          name="adminPain"
+          required
+          value={fields.adminPain}
+          onChange={handleChange}
+          rows={3}
+          placeholder="e.g. chasing clients for documents, manually sending updates, onboarding taking too long..."
+        />
+      </div>
+
+      <div className="waitlist-field">
+        <label htmlFor="docCollection">How do you currently handle client document collection?</label>
+        <textarea
+          id="docCollection"
+          name="docCollection"
+          required
+          value={fields.docCollection}
+          onChange={handleChange}
+          rows={3}
+          placeholder="e.g. email back and forth, we use a portal, clients drop things off..."
+        />
+      </div>
+
+      <button type="submit" className="waitlist-submit">Join the Waitlist</button>
+    </form>
   )
 }
 
@@ -142,6 +261,17 @@ export default function App() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+        </RevealSection>
+      </section>
+
+      {/* ── WAITLIST ── */}
+      <section className="waitlist" id="audit">
+        <RevealSection className="waitlist-header">
+          <div className="section-label">Get a Free AI Audit</div>
+          <h2>We'll map exactly where your business is losing time to manual admin and deliver a written report of findings — free. No pitch, just diagnosis.</h2>
+        </RevealSection>
+        <RevealSection delay="reveal-delay-1">
+          <WaitlistForm />
         </RevealSection>
       </section>
 
