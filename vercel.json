@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd osflo-site && npm install && npm run build",
-  "outputDirectory": "osflo-site/dist",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "framework": "vite"
 }
