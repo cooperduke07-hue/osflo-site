@@ -428,6 +428,12 @@
   font-family: var(--font-mono);
 }
 
+.waitlist-error {
+  font-size: 12px;
+  color: #f87171;
+  font-family: var(--font-mono);
+}
+
 .waitlist-confirm-msg {
   font-size: 14px;
   line-height: 1.7;

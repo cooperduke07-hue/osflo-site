@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { FormEvent } from 'react'
+import { useForm } from '@formspree/react'
 import './App.css'
 
 const CALENDLY = 'https://calendly.com/osflo/30min'
@@ -48,27 +48,9 @@ function RevealSection({ children, className = '', delay = '' }: {
 }
 
 function WaitlistForm() {
-  const [fields, setFields] = useState({
-    fullName: '',
-    email: '',
-    businessType: '',
-    teamSize: '',
-    adminPain: '',
-    docCollection: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+  const [state, handleSubmit] = useForm('mgopqvpe')
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
-    setFields(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault()
-    console.log('Waitlist submission:', fields)
-    setSubmitted(true)
-  }
-
-  if (submitted) {
+  if (state.succeeded) {
     return (
       <div className="waitlist-confirm">
         <div className="waitlist-confirm-icon">✓</div>
@@ -80,7 +62,7 @@ function WaitlistForm() {
   }
 
   return (
-    <form className="waitlist-form" onSubmit={handleSubmit} noValidate>
+    <form className="waitlist-form" onSubmit={handleSubmit}>
       <div className="waitlist-row">
         <div className="waitlist-field">
           <label htmlFor="fullName">Full name</label>
@@ -89,8 +71,6 @@ function WaitlistForm() {
             name="fullName"
             type="text"
             required
-            value={fields.fullName}
-            onChange={handleChange}
             placeholder="Jane Smith"
           />
         </div>
@@ -101,8 +81,6 @@ function WaitlistForm() {
             name="email"
             type="email"
             required
-            value={fields.email}
-            onChange={handleChange}
             placeholder="jane@yourfirm.com.au"
           />
         </div>
@@ -111,7 +89,7 @@ function WaitlistForm() {
       <div className="waitlist-row">
         <div className="waitlist-field">
           <label htmlFor="businessType">Business type</label>
-          <select id="businessType" name="businessType" required value={fields.businessType} onChange={handleChange}>
+          <select id="businessType" name="businessType" required defaultValue="">
             <option value="" disabled>Select your business type</option>
             <option value="Accounting firm">Accounting firm</option>
             <option value="Bookkeeping practice">Bookkeeping practice</option>
@@ -124,7 +102,7 @@ function WaitlistForm() {
         </div>
         <div className="waitlist-field">
           <label htmlFor="teamSize">Team size</label>
-          <select id="teamSize" name="teamSize" required value={fields.teamSize} onChange={handleChange}>
+          <select id="teamSize" name="teamSize" required defaultValue="">
             <option value="" disabled>Select team size</option>
             <option value="Just me">Just me</option>
             <option value="2-5 people">2–5 people</option>
@@ -140,8 +118,6 @@ function WaitlistForm() {
           id="adminPain"
           name="adminPain"
           required
-          value={fields.adminPain}
-          onChange={handleChange}
           rows={3}
           placeholder="e.g. chasing clients for documents, manually sending updates, onboarding taking too long..."
         />
@@ -153,14 +129,18 @@ function WaitlistForm() {
           id="docCollection"
           name="docCollection"
           required
-          value={fields.docCollection}
-          onChange={handleChange}
           rows={3}
           placeholder="e.g. email back and forth, we use a portal, clients drop things off..."
         />
       </div>
 
-      <button type="submit" className="waitlist-submit">Join the Waitlist</button>
+      {state.errors && (
+        <p className="waitlist-error">Something went wrong. Please try again.</p>
+      )}
+
+      <button type="submit" className="waitlist-submit" disabled={state.submitting}>
+        {state.submitting ? 'Submitting...' : 'Join the Waitlist'}
+      </button>
     </form>
   )
 }
