@@ -1,0 +1,26 @@
+:root {
+  --container: 1120px;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+section {
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 var(--space-5);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+}
+

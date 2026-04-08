@@ -5,17 +5,41 @@
 }
 
 :root {
-  --bg: #0f0f0f;
-  --bg-2: #141414;
-  --bg-3: #1a1a1a;
-  --green: #4EEDB3;
-  --blue: #2D4EF5;
-  --text: #e8e4dc;
-  --text-muted: #6b6760;
-  --text-dim: #9e9a94;
-  --border: #222222;
-  --font-serif: 'DM Serif Display', Georgia, serif;
-  --font-mono: 'DM Mono', 'Courier New', monospace;
+  --bg: #0f0f10;
+  --surface-0: #121214;
+  --surface-1: #16161a;
+  --surface-2: #1b1b20;
+  --accent: #4eedb3;
+  --text: #ebe7df;
+  --text-dim: #a7a19a;
+  --text-muted: #756f68;
+  --border: #26262c;
+
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+  --space-8: 48px;
+  --space-9: 56px;
+  --space-10: 64px;
+  --space-11: 72px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 120px;
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
 
 html {
@@ -26,15 +50,15 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--green);
-  color: #0f0f0f;
+  background: var(--accent);
+  color: var(--bg);
 }
 
 a {
@@ -46,7 +70,7 @@ button {
   cursor: pointer;
   border: none;
   background: none;
-  font-family: var(--font-mono);
+  font-family: inherit;
 }
 
 #root {

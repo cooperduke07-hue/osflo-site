@@ -1,0 +1,222 @@
+/* Kicker / section head */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.kicker::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-head {
+  max-width: 720px;
+  margin-bottom: var(--space-10);
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+
+.section-head p {
+  color: var(--text-dim);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  border-radius: var(--radius-md);
+  padding: 14px 22px;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--sm {
+  padding: 10px 14px;
+  font-size: var(--text-xs);
+}
+
+.btn--primary {
+  color: var(--bg);
+  background: var(--accent);
+  border: 1px solid color-mix(in oklab, var(--accent) 70%, black);
+}
+
+.btn--primary:hover {
+  opacity: 0.92;
+}
+
+.btn--ghost {
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: color-mix(in oklab, var(--border) 40%, var(--text));
+}
+
+.btn:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  outline-offset: 2px;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.card-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+  padding: var(--space-7);
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+}
+
+.card p {
+  color: var(--text-dim);
+  line-height: 1.7;
+  font-size: var(--text-sm);
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.field__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.field__control {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.12s ease, background 0.12s ease;
+}
+
+.field__control::placeholder {
+  color: var(--text-muted);
+}
+
+.field__control:focus {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+}
+
+.field__control--select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238c8c8c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form__error {
+  font-size: var(--text-sm);
+  color: #f87171;
+}
+
+.form__fineprint {
+  margin-top: calc(var(--space-2) * -1);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+  padding: var(--space-8);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.panel__icon {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 22px;
+}
+
+.panel__text {
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .card-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .form__row {
+    grid-template-columns: 1fr;
+  }
+}
+

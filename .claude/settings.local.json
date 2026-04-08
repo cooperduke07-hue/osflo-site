@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(cp -r osflo-site/src .)",
+      "Bash(cp -r osflo-site/public .)",
+      "Bash(cp osflo-site/index.html .)",
+      "Bash(cp osflo-site/package.json .)",
+      "Bash(cp osflo-site/package-lock.json .)",
+      "Bash(npm install:*)",
+      "Bash(rm:*)",
+      "Read(//c/Users/coope/Documents/**)",
+      "Read(//c/Users/coope/OneDrive/**)",
+      "Read(//c/Users/coope/**)"
+    ]
+  }
+}
