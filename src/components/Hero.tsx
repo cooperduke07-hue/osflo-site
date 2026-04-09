@@ -3,12 +3,12 @@ export function Hero({ onScoreCta, onHowCta }: { onScoreCta: () => void; onHowCt
     <section className="hero">
       <p className="hero-eyebrow">AI Accounting Operations for Australian SMBs</p>
       <h1 className="hero-headline">
-        Your Xero should run<br />
+        Accounting should run<br />
         <em>itself.</em>
       </h1>
       <p className="hero-sub">
-        OSFlo builds and installs AI-powered accounting workflows directly into your existing stack.
-        Reconciliation, invoicing, BAS prep, and client reporting. Automated and done.
+        OSflo builds and installs AI-powered accounting workflows directly into your existing stack.
+        Reconciliation, invoicing, BAS prep, and client reporting. We will get it done.
       </p>
       <div className="hero-actions">
         <button onClick={onScoreCta} className="btn btn--primary">
