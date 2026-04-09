@@ -4,8 +4,8 @@ export function Nav({ scrolled }: { scrolled: boolean }) {
       <a href="#" className="nav-logo">
         OS<span>flo</span>
       </a>
-      <a href="#audit" className="btn btn--primary btn--sm">
-        Get the Free Audit
+      <a href="#quiz" className="btn btn--primary btn--sm">
+        Get Your Free Score
       </a>
     </nav>
   )

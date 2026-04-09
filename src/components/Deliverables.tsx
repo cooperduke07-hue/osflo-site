@@ -1,56 +1,49 @@
 import { Reveal } from './Reveal'
 
-const deliverables = [
+const cards = [
   {
-    title: 'A mapped client journey',
-    body: 'We document your current lead-to-client flow and highlight every handoff, delay, and dead-end.',
+    n: '01',
+    title: 'Bank feeds nobody is watching',
+    body: 'Transactions pile up unreconciled. By the time someone catches up, the backlog is a half-day job that should have taken minutes.',
   },
   {
-    title: 'Revenue leak checklist',
-    body: 'A ranked list of where clients go quiet, where follow-up fails, and where manual admin is costing you money.',
+    n: '02',
+    title: 'Invoice follow-up done manually',
+    body: 'Your team is sending payment reminders one by one. That is a system problem, not a staffing problem.',
   },
   {
-    title: 'Automation opportunities',
-    body: 'Specific triggers, messages, and sequences that can run in your existing tools (CRM, email, SMS).',
+    n: '03',
+    title: 'BAS prep from multiple sources',
+    body: 'Every quarter the same scramble. Data pulled from three places, checked twice, and lodged under pressure. It does not have to work this way.',
   },
   {
-    title: 'Implementation blueprint',
-    body: 'A clear plan for what we’d build, in what order, and what it would change operationally.',
+    n: '04',
+    title: 'Reporting that takes all day',
+    body: 'Your clients or directors want numbers. Your team spends hours pulling them. AI can have that ready before anyone asks.',
   },
 ]
 
 export function Deliverables() {
   return (
-    <section className="deliverables" id="report">
-      <div className="container">
-        <Reveal className="section-head">
-          <div className="kicker">The report</div>
-          <h2>What you get (before we ever talk pricing).</h2>
-          <p>
-            You’ll receive a written audit with clear findings and a recommended build plan. If it’s a fit, we discuss
-            implementation and pricing after you’ve seen the report.
-          </p>
-        </Reveal>
-
-        <div className="card-grid card-grid--2">
-          {deliverables.map((d, i) => (
-            <Reveal key={d.title} className="card" delayMs={90 * i}>
-              <h3>{d.title}</h3>
-              <p>{d.body}</p>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="next-steps" delayMs={150}>
-          <div className="next-steps__title">What happens after</div>
-          <ul className="next-steps__list">
-            <li>We send the report and walk you through the findings.</li>
-            <li>If you want the system built, we quote based on scope and your stack.</li>
-            <li>No retainers required. You decide if you want ongoing iteration.</li>
-          </ul>
-        </Reveal>
+    <section className="problem" id="problem">
+      <Reveal className="problem-intro">
+        <div className="kicker">The Problem</div>
+        <h2>You are losing hours every week to work your software should handle.</h2>
+        <p>
+          Most accounting firms and small businesses run on manual processes, spreadsheet workarounds, and staff time
+          that should be spent elsewhere. Every unreconciled transaction, every chased invoice, every BAS prepared by
+          hand. That is time and money your business does not get back.
+        </p>
+      </Reveal>
+      <div className="problem-grid">
+        {cards.map((c, i) => (
+          <Reveal key={c.n} className="pain-card" delayMs={80 * i}>
+            <div className="pain-number">{c.n}</div>
+            <div className="pain-title">{c.title}</div>
+            <p className="pain-body">{c.body}</p>
+          </Reveal>
+        ))}
       </div>
     </section>
   )
 }
-

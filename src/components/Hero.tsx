@@ -1,23 +1,22 @@
-export function Hero() {
+export function Hero({ onScoreCta, onHowCta }: { onScoreCta: () => void; onHowCta: () => void }) {
   return (
     <section className="hero">
-      <p className="hero-eyebrow">Automated client systems for service businesses</p>
+      <p className="hero-eyebrow">AI Accounting Operations for Australian SMBs</p>
       <h1 className="hero-headline">
-        Your team should<br />
-        stop chasing.<br />
-        <em>Let the system do it.</em>
+        Your Xero should run<br />
+        <em>itself.</em>
       </h1>
       <p className="hero-sub">
-        OSFlo builds and installs automated follow-up and communication systems that run in the background — so you close
-        more, lose fewer clients, and stop leaving money on the table.
+        OSFlo builds and installs AI-powered accounting workflows directly into your existing stack.
+        Reconciliation, invoicing, BAS prep, and client reporting. Automated and done.
       </p>
       <div className="hero-actions">
-        <a href="#audit" className="btn btn--primary">
-          Get the Free Audit
-        </a>
-        <a href="#how" className="btn btn--ghost">
+        <button onClick={onScoreCta} className="btn btn--primary">
+          Get Your Free Score
+        </button>
+        <button onClick={onHowCta} className="btn btn--ghost">
           See how it works
-        </a>
+        </button>
       </div>
       <div className="hero-rule" aria-hidden="true">
         {[...Array(8)].map((_, i) => (
@@ -27,4 +26,3 @@ export function Hero() {
     </section>
   )
 }
-
