@@ -95,9 +95,6 @@ export function WaitlistForm() {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<number[]>(Array(6).fill(-1))
   const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null)
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
 
   const totalPoints = answers.reduce((sum, pts) => sum + (pts === -1 ? 0 : pts), 0)
   const score = Math.round((totalPoints / 145) * 100)
@@ -120,28 +117,6 @@ export function WaitlistForm() {
       setSelectedOptionIndex(null)
     } else {
       setCurrentStep(7)
-    }
-  }
-
-  const handleResultsSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setSubmitState('submitting')
-    try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          email,
-          score,
-          scoreLabel,
-          answers,
-          timestamp: new Date().toISOString(),
-        }),
-      })
-      setSubmitState(res.ok ? 'success' : 'error')
-    } catch {
-      setSubmitState('error')
     }
   }
 
@@ -247,19 +222,6 @@ export function WaitlistForm() {
   if (currentStep === 7) {
     const findings = getFindings(answers)
 
-    if (submitState === 'success') {
-      return (
-        <div style={cardStyle}>
-          <div className="panel__icon" aria-hidden="true">
-            ✓
-          </div>
-          <p style={{ color: 'var(--text-dim)', lineHeight: 1.7, marginTop: 'var(--space-4)' }}>
-            Done. Check your inbox and we will be in touch shortly to confirm your call.
-          </p>
-        </div>
-      )
-    }
-
     return (
       <div style={cardStyle}>
         <div style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>
@@ -305,53 +267,18 @@ export function WaitlistForm() {
 
         <div style={{ borderTop: '1px solid var(--border)', paddingTop: 'var(--space-7)' }}>
           <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', lineHeight: 1.2, marginBottom: 'var(--space-3)' }}>
-            Get your full report and book a free 30-minute call.
+            Want to talk through your results?
           </h3>
           <p style={{ color: 'var(--text-dim)', fontSize: 'var(--text-sm)', lineHeight: 1.7, marginBottom: 'var(--space-6)' }}>
-            We will walk you through your findings and show you exactly what we would build.
+            Press the button below to send us an email and book a free 30-minute call.
           </p>
-          <form onSubmit={handleResultsSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-            <div className="field">
-              <label htmlFor="res-name" className="field__label">Full Name</label>
-              <input
-                id="res-name"
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Jane Smith"
-                className="field__control"
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="res-email" className="field__label">Email Address</label>
-              <input
-                id="res-email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="jane@yourfirm.com.au"
-                className="field__control"
-              />
-            </div>
-            {submitState === 'error' && (
-              <p className="form__error">
-                Something went wrong. Please email us directly at hello@osflo.com.au
-              </p>
-            )}
-            <button
-              type="submit"
-              className="btn btn--primary"
-              disabled={submitState === 'submitting'}
-              style={{ width: '100%' }}
-            >
-              {submitState === 'submitting' ? 'Sending...' : 'Send My Report and Book a Call'}
-            </button>
-            <p className="form__fineprint">
-              You will receive your score summary by email. We will reach out to confirm your call time.
-            </p>
-          </form>
+          <a
+            href="mailto:cooper@osflo.com.au?subject=AI Readiness Score Call&body=Hi Cooper, I just completed the OSFlo AI Readiness Score and would love to book a free call to discuss my results."
+            className="btn btn--primary"
+            style={{ display: 'block', width: '100%', textAlign: 'center', boxSizing: 'border-box' }}
+          >
+            Book a Free Call
+          </a>
         </div>
       </div>
     )
